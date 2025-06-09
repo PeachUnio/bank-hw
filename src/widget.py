@@ -12,3 +12,12 @@ def mask_account_card(card_accaunt_number: (Union[str])) -> Union[str]:
         card_name = card_accaunt_number[:-17]
         mask_card = get_mask_card_number(card_number)
         return f"{card_name} {mask_card}"
+
+
+
+def get_date(data: Union[str]) -> Union[str]:
+    """Функция, которая преобразует дату"""
+    day = data[8:10]
+    month = data[5:7]
+    year = data[:4]
+    return f"{day}.{month}.{year}"
