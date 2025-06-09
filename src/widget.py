@@ -15,7 +15,7 @@ def mask_account_card(card_accaunt_number: Union[str]) -> Union[str]:
         return f"{card_name} {mask_card}"
 
 
-def (data: Union[str]) -> Union[str]:
+def get_date(data: Union[str]) -> Union[str]:
     """Функция, которая преобразует дату"""
     day = data[8:10]
     month = data[5:7]
