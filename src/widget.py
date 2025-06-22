@@ -4,6 +4,7 @@ from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(card_accaunt_number: Union[str]) -> Union[str]:
+    """Функция, которая маскирует имя аккаунта или счета"""
     if "Счет" in card_accaunt_number:
         account_number = card_accaunt_number[5:]
         mask_accunt = get_mask_account(account_number)
