@@ -8,8 +8,11 @@ def filter_by_state(list_dict, my_state="EXECUTED") -> List[Dict[str, str]]:
     """
     new_list = []
     for i in list_dict:
-        if i["state"] == my_state:
-            new_list.append(i)
+        try:
+            if i["state"] == my_state:
+                new_list.append(i)
+        except KeyError:
+            return list_dict
     return new_list
 
 

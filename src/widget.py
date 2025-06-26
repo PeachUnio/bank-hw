@@ -18,7 +18,9 @@ def mask_account_card(card_account_number: Union[str]) -> Union[str]:
 
 def get_date(data: Union[str]) -> Union[str]:
     """Функция, которая преобразует дату"""
-    day = data[8:10]
-    month = data[5:7]
-    year = data[:4]
-    return f"{day}.{month}.{year}"
+    if data:
+        day = data[8:10]
+        month = data[5:7]
+        year = data[:4]
+        return f"{day}.{month}.{year}"
+    return ""
