@@ -29,3 +29,10 @@ def transaction_descriptions(transactions):
         yield []
     if not found:
         yield []
+
+
+def card_number_generator(start=1, stop=9999999999999999):
+    for number in range(start, stop + 1):
+        number_of_zeros = 16 - len(str(number))
+        card_number = f"{"0" * number_of_zeros}{number}"
+        yield f"{card_number[:4]} {card_number[4:8]} {card_number[8:12]} {card_number[12:]}"
