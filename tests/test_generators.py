@@ -2,7 +2,7 @@ from os import access
 
 import pytest
 
-from src.generators import filter_by_currency
+from src.generators import filter_by_currency, transaction_descriptions
 
 @pytest.fixture
 def transactions():
@@ -95,3 +95,12 @@ def test_filter_by_currency(transactions, transactions_usd):
     assert next(generator) == []
     generator = filter_by_currency(transactions, "USD")
     assert next(generator) == transactions_usd
+
+
+def test_transaction_descriptions(transactions):
+    generator = transaction_descriptions([])
+    assert next(generator) == []
+    generator = transaction_descriptions(transactions)
+    assert next(generator) == "Перевод организации"
+    assert next(generator) == "Перевод со счета на счет"
+
