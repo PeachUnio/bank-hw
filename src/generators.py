@@ -1,4 +1,7 @@
-def filter_by_currency(transactions_list, currency):
+from typing import Dict, List, Union
+
+
+def filter_by_currency(transactions_list: List[Dict[str, str]], currency: Union[str]):
     """
     Генератор, который поочередно выдает транзакции, где валюта операции соответствует заданной
     """
@@ -17,7 +20,7 @@ def filter_by_currency(transactions_list, currency):
         yield []
 
 
-def transaction_descriptions(transactions):
+def transaction_descriptions(transactions: List[Dict[str, str]]):
     """Генеоатор, который выдает описание функции"""
     found = False
     if transactions:
