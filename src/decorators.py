@@ -14,7 +14,7 @@ def format_inputs(args, kwargs):
 
 
 #декоратор фиксирующий время выполнения функции, ее результат и возможные ошибки
-def log(filename="print"):
+def log(filename=None):
     def wrapper(func):
         @wraps(func)
         def inner(*args, **kwargs):
@@ -22,18 +22,19 @@ def log(filename="print"):
             try:
                 result = func(*args, **kwargs)
                 end_time = time.perf_counter()
-                message = f"{result}\nВремя выполнения функции: {end_time - start_time}\n{func.__name__} ok\n"
-                if filename == "print":
+                message = f"{result}\n{func.__name__} ok"
+                if filename is None:
                     print(message)
                 else:
                     with open(filename, "a", encoding="utf-8") as file:
                         file.write(message)
+                    print(f"{func.__name__} ok")
                 return result
             except Exception as e:
                 end_time = time.perf_counter()
                 inputs = format_inputs(args, kwargs)
-                message = f"Время выполнения функции: {end_time - start_time}\n{func.__name__} error: {e} Inputs: {inputs}\n"
-                if filename == "print":
+                message = f"{func.__name__} error: {e} Inputs: {inputs}"
+                if filename is None:
                     print(message)
                 else:
                     with open(filename, "a", encoding="utf-8") as file:
