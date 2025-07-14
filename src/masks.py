@@ -5,14 +5,7 @@ def get_mask_card_number(card_number: Union[int]) -> Union[str]:
     """Функция, которая маскирует номер счета"""
     if card_number:
         str_card_number = str(card_number)
-        masking_card_number = (
-            str_card_number[:4]
-            + " "
-            + str_card_number[4:6]
-            + "** ****"
-            + " "
-            + str_card_number[12:]
-        )
+        masking_card_number = str_card_number[:4] + " " + str_card_number[4:6] + "** ****" + " " + str_card_number[12:]
         return masking_card_number
     return ""
 
