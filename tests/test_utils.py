@@ -1,25 +1,21 @@
 import json
 import unittest
-from src.utils import load_transactions
-from unittest.mock import Mock, patch, mock_open
-import pytest
 from json import JSONDecodeError
+from unittest.mock import Mock, mock_open, patch
+
+from src.utils import load_transactions
 
 
 class TestLoadTransactions(unittest.TestCase):
 
     def test_load_transactions(self):
-        test_data = [
-            {"id": 1, "amount": 100},
-            {"id": 2, "amount": 200}
-        ]
+        test_data = [{"id": 1, "amount": 100}, {"id": 2, "amount": 200}]
 
         with patch("builtins.open", mock_open(read_data=json.dumps(test_data))) as mock_file:
             with patch("json.loads", return_value=test_data):
                 result = load_transactions("dummy_path.json")
 
                 self.assertEqual(result, test_data)
-                mock_file.assert_called_once_with("dummy_path.json", "r", encoding="utf-8")
                 mock_file.assert_called_once_with("dummy_path.json", "r", encoding="utf-8")
 
     def test_load_transactions_empty_list(self):
@@ -42,5 +38,3 @@ class TestLoadTransactions(unittest.TestCase):
         with patch("builtins.open", side_effect=JSONDecodeError):
             result = load_transactions("not_exist.json")
             self.assertEqual(result, [])
-
-

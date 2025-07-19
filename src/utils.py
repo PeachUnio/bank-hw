@@ -1,6 +1,5 @@
 import json
 from json import JSONDecodeError
-import requests
 
 
 def load_transactions(file_path):
