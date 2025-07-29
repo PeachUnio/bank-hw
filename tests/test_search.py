@@ -1,5 +1,5 @@
 import pytest
-from src.search import process_bank_search
+from src.search import process_bank_search, process_bank_operations
 
 
 @pytest.fixture
@@ -106,4 +106,8 @@ def test_process_bank_search(transaction_data, transactions_with_description):
     assert process_bank_search(transaction_data, "несуществующее описание") == []
 
 
-def
+def test_process_bank_operations(transaction_data):
+    assert process_bank_operations(transaction_data, ["Перевод со счета на счет",
+                                                      "Перевод организации"]) == {'Перевод организации': 2,
+                                                                                  'Перевод со счета на счет': 2}
+    assert process_bank_operations(transaction_data, []) == {}
