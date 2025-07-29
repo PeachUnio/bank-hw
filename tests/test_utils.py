@@ -1,7 +1,7 @@
 import json
 import unittest
 from json import JSONDecodeError
-from unittest.mock import Mock, mock_open, patch
+from unittest.mock import mock_open, patch
 
 from src.utils import load_transactions
 

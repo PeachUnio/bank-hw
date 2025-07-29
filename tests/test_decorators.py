@@ -1,5 +1,3 @@
-from os import access
-
 import pytest
 
 from src.decorators import format_inputs, log
@@ -12,7 +10,7 @@ def test_log_print(capsys):
 
     result = add_numbers(5, 3)
     captured = capsys.readouterr()
-    assert captured.out == "8\nadd_numbers ok\n"
+    assert captured.out == f"{result}\nadd_numbers ok\n"
 
 
 def test_log_print_error(capsys):
