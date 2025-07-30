@@ -1,7 +1,7 @@
 import json
 import logging
-from pathlib import Path
 from json import JSONDecodeError
+from pathlib import Path
 
 log_dir = Path(__file__).parent / "logs"
 log_dir.mkdir(parents=True, exist_ok=True)
@@ -9,10 +9,8 @@ log_dir.mkdir(parents=True, exist_ok=True)
 logger = logging.getLogger("utils")
 logger.setLevel(logging.INFO)
 
-file_handler = logging.FileHandler(log_dir / "utils.log", encoding='utf-8')
-file_handler.setFormatter(
-    logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-)
+file_handler = logging.FileHandler(log_dir / "utils.log", encoding="utf-8")
+file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
 logger.addHandler(file_handler)
 
 

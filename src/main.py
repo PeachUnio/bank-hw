@@ -1,10 +1,9 @@
-from src.utils import load_transactions
-from src.reading import reading_csv_file, reading_excel_file
 from src.processing import filter_by_state, sort_by_date
+from src.reading import reading_csv_file, reading_excel_file
 from src.search import process_bank_search
-from src.widget import mask_account_card, get_date
+from src.utils import load_transactions
+from src.widget import get_date, mask_account_card
 
-test_path = "C:/Users/Stealth/something/transactions_excel.xlsx"
 
 
 def main(data_path):
@@ -12,11 +11,13 @@ def main(data_path):
     Функция которая собирает основную логику программы банковского приложения и отдает список отфильтрованных функций
     для пользователя
     """
-    print("""Привет! Добро пожаловать в программу работы с банковскими транзакциями.
+    print(
+        """Привет! Добро пожаловать в программу работы с банковскими транзакциями.
     Выберите необходимый пункт меню:
     1. Получить информацию о транзакциях из JSON-файла
     2. Получить информацию о транзакциях из CSV-файла
-    3. Получить информацию о транзакциях из XLSX-файла""")
+    3. Получить информацию о транзакциях из XLSX-файла"""
+    )
 
     while True:
         user_answer = input()
@@ -37,8 +38,10 @@ def main(data_path):
             continue
 
     while True:
-        print("Введите статус, по которому необходимо выполнить фильтрацию. "
-              "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING")
+        print(
+            "Введите статус, по которому необходимо выполнить фильтрацию. "
+            "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"
+        )
         user_answer_2 = input().upper()
         if user_answer_2 not in {"EXECUTED", "CANCELED", "PENDING"}:
             print(f"Статус операции {user_answer_2} недоступен.")
@@ -61,8 +64,7 @@ def main(data_path):
     print("Выводить только рублевые транзакции? Да/Нет")
     user_answer_5 = input().lower()
     if user_answer_5 == "да":
-        filter_dict = [i for i in filter_dict
-                       if i.get("currency_code", {}) == "RUB"]
+        filter_dict = [i for i in filter_dict if i.get("currency_code", {}) == "RUB"]
 
     print("Программа: Отфильтровать список транзакций по определенному слову в описании? Да/Нет")
     user_answer_6 = input().lower()
@@ -93,5 +95,3 @@ def main(data_path):
                 print(f"Сумма: {int(op["amount"])} {op["currency_code"]}\n")
     else:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
-
-
